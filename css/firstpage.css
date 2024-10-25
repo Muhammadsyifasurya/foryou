@@ -1,0 +1,222 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+  font-family: "Arial", sans-serif;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  animation: backgroundAnimation 15s infinite alternate;
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+  }
+  50% {
+    background: linear-gradient(135deg, #ff6b6b, #ffb6b6);
+  }
+  100% {
+    background: linear-gradient(135deg, #ffc3a0, #ffafbd);
+  }
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.birthday-message {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  width: 90%;
+  max-width: 500px; /* Increased width */
+  margin: 0 auto;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1s forwards 1s;
+}
+
+.birthday-message h1 {
+  font-size: 32px; /* Increased font size */
+  color: #ff6b6b;
+  margin-bottom: 15px;
+  animation: slideIn 0.5s forwards;
+}
+
+.birthday-message p {
+  font-size: 20px; /* Increased font size */
+  color: #333;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  font-size: 18px; /* Increased font size */
+  color: #333;
+  margin-bottom: 10px;
+}
+
+input[type="date"],
+input[type="time"] {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  transition: border 0.3s;
+}
+
+input[type="date"]:focus,
+input[type="time"]:focus {
+  border: 1px solid #ff6b6b;
+  outline: none;
+}
+
+.continue-btn {
+  background-color: #ff6b6b;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px; /* Increased font size */
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.continue-btn:hover {
+  background-color: #ff4b4b;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes openEnvelope {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.envelope-container {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s;
+  animation: bounce 1s infinite alternate;
+  margin-bottom: 20px;
+}
+
+.envelope {
+  width: 300px;
+  transition: transform 0.5s;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Confetti Styles */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0.8;
+  animation: fall 5s infinite;
+  z-index: 1;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+/* Different colors for confetti */
+.confetti:nth-child(1) {
+  background-color: #ffcc00;
+}
+
+.confetti:nth-child(2) {
+  background-color: #ff6b6b;
+}
+
+.confetti:nth-child(3) {
+  background-color: #ffc3a0;
+}
+
+.confetti:nth-child(4) {
+  background-color: #6bcf7d;
+}
+
+.confetti:nth-child(5) {
+  background-color: #ff7b7b;
+}
+
+.confetti:nth-child(6) {
+  width: 12px;
+  height: 12px;
+}
+
+.confetti:nth-child(7) {
+  width: 8px;
+  height: 8px;
+}
+
+/* Celebration message */
+.celebrate {
+  display: none;
+  font-size: 36px;
+  font-weight: bold;
+  animation: celebrateAnimation 1s forwards;
+}
+
+@keyframes celebrateAnimation {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="css/firstpage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            font-family: "Arial", sans-serif;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            animation: backgroundAnimation 15s infinite alternate;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            }
+
+            50% {
+                background: linear-gradient(135deg, #ff6b6b, #ffb6b6);
+            }
+
+            100% {
+                background: linear-gradient(135deg, #ffc3a0, #ffafbd);
+            }
+        }
+
+        .container {
+            position: relative;
+        }
+
+        .birthday-message {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s forwards 1s;
+        }
+
+        .birthday-message h1 {
+            font-size: 32px;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            animation: slideIn 0.5s forwards;
+        }
+
+        .birthday-message p {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .decorative-icon {
+            position: absolute;
+            font-size: 60px;
+            color: #ff6b6b;
+            animation: bounce 2s infinite;
+        }
+
+        .icon1 {
+            top: -30px;
+            left: 20px;
+        }
+
+        .icon2 {
+            bottom: -30px;
+            right: 20px;
+        }
+
+        .icon3 {
+            top: 20px;
+            right: 20px;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        input[type="date"],
+        input[type="time"] {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: border 0.3s;
+            width: 80%;
+        }
+
+        input[type="date"]:focus,
+        input[type="time"]:focus {
+            border: 1px solid #ff6b6b;
+            outline: none;
+        }
+
+        .continue-btn {
+            background-color: #ff6b6b;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .continue-btn:hover {
+            background-color: #ff4b4b;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="background-music" loop>
+        <source src="music/piano.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <div class="container">
+        <!-- Birthday Message -->
+        <div class="birthday-message">
+            <h1>Happy 24th Birthday, My Love!</h1>
+            <p>Today, we celebrate the arrival of another radiant year in your life, a year filled with beauty and
+                promise. In the embrace of time, I am endlessly grateful to share this journey with you at every step.
+                You are the light that brightens my path, and with each moment spent together, I discover a depth of
+                meaning beyond measure. May love, joy, and laughter flow abundantly in your life, like stars that grace
+                the night sky. Happy birthday, my darling—may all your dreams awaken in the wonders of this new chapter.
+            </p>
+            <p>So, when will we celebrate it?</p>
+            <!-- Date and Time Form -->
+            <form action="place.html" method="get">
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Select Time:</label>
+                <input type="time" id="time" name="time" required>
+
+                <button type="submit" class="continue-btn">Click Me</button>
+            </form>
+            <!-- Decorative Heart Icons -->
+            <i class="fas fa-heart decorative-icon icon1"></i>
+            <i class="fas fa-heart decorative-icon icon2"></i>
+            <i class="fas fa-heart decorative-icon icon3"></i>
+        </div>
+    </div>
+
+    <script>
+        // Start playing background music if it was previously playing
+        const backgroundMusic = document.getElementById('background-music');
+
+        if (localStorage.getItem('isMusicPlaying') === 'true') {
+            backgroundMusic.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
+    </script>
+</body>
+
+</html>

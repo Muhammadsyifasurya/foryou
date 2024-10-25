@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Can We Eat?</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 600px;
+            transition: transform 0.3s;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        .question h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .food-option {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .food-option img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Highlight style for selected option */
+        .food-option.selected {
+            background-color: rgba(255, 255, 0, 0.5);
+            color: #000;
+        }
+
+        .food-option:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .continue-btn {
+            background-color: #ff6b6b;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .continue-btn:hover {
+            background-color: #ff4b4b;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="question">
+            <h1>What can we eat?</h1>
+            <form id="food-form">
+                <input type="radio" name="food" value="Pizza" id="pizza" required>
+                <div class="food-option" onclick="selectOption(this, 'pizza')">
+                    <img src="asset/pizza.jpg" alt="Pizza">
+                    <span>Pizza</span>
+                </div>
+
+                <input type="radio" name="food" value="Sushi" id="sushi">
+                <div class="food-option" onclick="selectOption(this, 'sushi')">
+                    <img src="asset/sushi.jpg" alt="Sushi">
+                    <span>Sushi</span>
+                </div>
+
+                <input type="radio" name="food" value="Sate" id="sate">
+                <div class="food-option" onclick="selectOption(this, 'sate')">
+                    <img src="asset/sate.jpg" alt="Sate">
+                    <span>Sate</span>
+                </div>
+
+                <input type="radio" name="food" value="Geprek" id="geprek">
+                <div class="food-option" onclick="selectOption(this, 'geprek')">
+                    <img src="asset/geprek.jpg" alt="Geprek">
+                    <span>Geprek</span>
+                </div>
+
+                <input type="radio" name="food" value="Ramen" id="ramen">
+                <div class="food-option" onclick="selectOption(this, 'ramen')">
+                    <img src="asset/ramen.jpg" alt="Ramen">
+                    <span>Ramen</span>
+                </div>
+
+                <button type="button" class="continue-btn" onclick="submitForm()">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Audio element for background music -->
+    <audio id="background-audio" src="asset/background-music.mp3" loop autoplay></audio>
+
+    <script>
+        function playBackgroundAudio() {
+            const audio = document.getElementById('background-audio');
+            audio.play();
+        }
+
+        function selectOption(selectedDiv, radioId) {
+            // Remove the 'selected' class from all food options
+            const foodOptions = document.querySelectorAll('.food-option');
+            foodOptions.forEach(option => option.classList.remove('selected'));
+
+            // Add the 'selected' class to the clicked option
+            selectedDiv.classList.add('selected');
+
+            // Check the corresponding radio button
+            const radioButton = document.getElementById(radioId);
+            radioButton.checked = true;
+
+            // Play the background audio
+            playBackgroundAudio();
+        }
+
+        function submitForm() {
+            // Get the form element
+            const form = document.getElementById('food-form');
+
+            // Check if any radio button is selected
+            if (form.checkValidity()) {
+                // Redirect to excitement.html
+                window.location.href = "excitement.html";
+            } else {
+                alert("Please select a food option!");
+            }
+        }
+    </script>
+</body>
+
+</html>

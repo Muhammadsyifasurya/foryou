@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where We Can Go?</title>
+    <link rel="stylesheet" href="css/secondpage.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            animation: backgroundAnimation 15s infinite alternate;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            }
+
+            50% {
+                background: linear-gradient(135deg, #ff6b6b, #ffcc00);
+            }
+
+            100% {
+                background: linear-gradient(135deg, #acb6e5, #74ebd5);
+            }
+        }
+
+        .container {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 90%;
+            width: 800px;
+            margin: auto;
+            transition: transform 0.5s;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        .question h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            animation: slideIn 0.5s forwards;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 15px 0;
+            transition: transform 0.3s;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        input[type="radio"] {
+            display: none;
+            /* Hide the default radio button */
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            /* Make the label clickable */
+            width: 100%;
+        }
+
+        img {
+            width: 70px;
+            height: 70px;
+            margin-right: 15px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .option:hover {
+            transform: translateY(-2px);
+            color: #ffcc00;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Highlight the selected option */
+        .selected {
+            background-color: rgba(255, 255, 0, 0.3);
+            /* Change the highlight color */
+            color: #000;
+        }
+
+        .continue-btn {
+            background-color: #ff6b6b;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .continue-btn:hover {
+            background-color: #ff4b4b;
+            transform: scale(1.05);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio autoplay loop>
+        <source src="music/piano.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="container">
+        <div class="question">
+            <h1>Where can we go?</h1>
+            <form id="destinationForm">
+                <div class="option">
+                    <label for="park">
+                        <input type="radio" id="park" name="place" value="Park" required>
+                        <img src="asset/park.jpg" alt="Park">
+                        Park
+                    </label>
+                </div>
+                <div class="option">
+                    <label for="restaurant">
+                        <input type="radio" id="restaurant" name="place" value="Favorite Restaurant">
+                        <img src="asset/restaurant.jpg" alt="Favorite Restaurant">
+                        Favorite Restaurant
+                    </label>
+                </div>
+                <div class="option">
+                    <label for="beach">
+                        <input type="radio" id="beach" name="place" value="Beach">
+                        <img src="asset/beach.jpg" alt="Beach">
+                        Beach
+                    </label>
+                </div>
+                <div class="option">
+                    <label for="cinema">
+                        <input type="radio" id="cinema" name="place" value="Cinema">
+                        <img src="asset/cinema.jpg" alt="Cinema">
+                        Cinema
+                    </label>
+                </div>
+                <div class="option">
+                    <label for="coffeeshop">
+                        <input type="radio" id="coffeeshop" name="place" value="Coffee Shop">
+                        <img src="asset/coffeeshop.jpg" alt="Coffee Shop">
+                        Coffee Shop
+                    </label>
+                </div>
+                <button type="submit" class="continue-btn">Continue</button>
+            </form>
+            <div id="result" style="margin-top: 20px; font-size: 20px;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get all option elements
+        const options = document.querySelectorAll('.option');
+
+        // Add click event listener to each option
+        options.forEach(option => {
+            option.addEventListener('click', function () {
+                // Remove 'selected' class from all options
+                options.forEach(opt => opt.classList.remove('selected'));
+
+                // Add 'selected' class to the clicked option
+                this.classList.add('selected');
+            });
+        });
+
+        document.getElementById('destinationForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Get the value of the selected radio button
+            const selectedPlace = document.querySelector('input[name="place"]:checked');
+
+            if (selectedPlace) {
+                // Redirect to the next page (food.html)
+                window.location.href = 'food.html'; // Ganti dengan URL halaman tujuan Anda
+            } else {
+                // Show an alert if no option is selected
+                alert("Please select a destination.");
+            }
+        });
+    </script>
+</body>
+
+</html>
