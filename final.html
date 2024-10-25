@@ -236,6 +236,10 @@
 </head>
 
 <body>
+    <audio autoplay loop>
+        <source src="music/piano.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
     <div class="container">
         <div class="gif-container">
             <div class="tenor-gif-embed" data-postid="26865197" data-share-method="host" data-aspect-ratio="1.37339"
@@ -268,6 +272,7 @@
         const time = urlParams.get('time');
 
         document.getElementById('dateTime').innerHTML = `On ${date} at ${time}`;
+        // Start playing background music if it was previously playing
     </script>
 </body>
 

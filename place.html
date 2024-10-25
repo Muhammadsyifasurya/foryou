@@ -217,6 +217,15 @@
                 alert("Please select a destination.");
             }
         });
+
+        // Start playing background music if it was previously playing
+        const backgroundMusic = document.getElementById('background-music');
+
+        if (localStorage.getItem('isMusicPlaying') === 'true') {
+            backgroundMusic.play().catch(error => {
+                console.log('Audio playback failed:', error);
+            });
+        }
     </script>
 </body>
 
